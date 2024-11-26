@@ -1,0 +1,18 @@
+# Hide Maven output
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# Hide IntelliJ IDEA files
+.idea/
+*.iws
+*.iml
+*.ipr
+
+
+# Hide MacOS system files
+.DS_Store
+
+# Hide Log data
+*.log
