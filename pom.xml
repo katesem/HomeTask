@@ -22,7 +22,6 @@
             <version>5.5.0</version>
         </dependency>
 
-
         <!-- Jackson Core Module -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
@@ -50,6 +49,18 @@
             <artifactId>testng</artifactId>
             <version>7.10.2</version>
             <scope>test</scope>
+        </dependency>
+
+        <!-- Log4J logging library Dependency -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.24.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>2.24.2</version>
         </dependency>
 
     </dependencies>
