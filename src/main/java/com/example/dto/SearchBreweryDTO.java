@@ -3,12 +3,12 @@ package com.example.dto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Data Transfer Object for Brewery API response JSON to simplify the deserialization process
+ * Data Transfer Object for /search endpoint JSON to simplify the deserialization process
  * <p>
- * Added @JsonProperty annotation only for fields where the JSON property name differs from the Java naming convention.
+ * Added @JsonProperty  annotation with field name only for fields where the JSON property name differs from the Java naming convention.
  */
 
-public class BreweryDTO {
+public class SearchBreweryDTO {
 
     private String id;
 
