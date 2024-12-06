@@ -36,14 +36,11 @@ public class SearchBreweryResponseValidator {
      * Returns JSON Array size
      **/
     public static void validateAutocompleteJsonSchemaAndThatFieldsNotNull(Response response) throws JsonProcessingException {
-        // Initialize ObjectMapper with strict property validation
-        // if non DTO fields will be present in response - test execution will stop with error
-        ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
 
-        // Deserializing JSON response into a list of BreweryDTO objects using Jackson
-        List<AutocompleteSearchBreweryDTO> breweries = objectMapper.readValue(response.getBody().asString(), new TypeReference<>() {
+        // Deserializing JSON response into a list of AutocompleteSearchBreweryDTO objects using Jackson
+        List<AutocompleteSearchBreweryDTO> breweries = constructDTO(response, new TypeReference<>() {
         });
+
         breweries.forEach(brewery -> {
             // Verify that ID and Name fields are not null
             if (brewery.getId() == null || brewery.getName() == null) {
@@ -58,15 +55,9 @@ public class SearchBreweryResponseValidator {
      **/
     public static void validateResponseStructureAndQueryMatch(Response response, String queryParamValue) throws Exception {
 
-        // Initialize ObjectMapper with strict property validation
-        // if non DTO fields will be present in response - test execution will stop with error
-        ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
-
-        // Deserializing JSON response into a list of BreweryDTO objects using Jackson
-        List<SearchBreweryDTO> breweries = objectMapper.readValue(response.getBody().asString(), new TypeReference<>() {
+        // Deserializing JSON response into a list of SearchBreweryDTO objects using Jackson
+        List<SearchBreweryDTO> breweries = constructDTO(response, new TypeReference<>() {
         });
-
         List<String> unmatchedIds = new ArrayList<>(); // Store breweries ID's with no search matches
 
         // Iterating through each BreweryDTO object
@@ -93,6 +84,21 @@ public class SearchBreweryResponseValidator {
             logger.error("No match found in the following breweries (IDs): \n{}", unmatchedIds);
             throw new AssertionError("Test failed because some breweries did not contain the query parameter value.");
         }
+    }
+
+    /**
+     * Method for deserializing JSON response into a list of DTO objects of target class
+     * Throws JsonProcessingException If deserialization fails
+     */
+    public static <T> List<T> constructDTO(Response response, TypeReference<List<T>> dtoType) throws JsonProcessingException {
+
+        // Initialize ObjectMapper with strict property validation
+        // if non DTO fields will be present in response - test execution will stop with error
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
+
+        // Deserialize the response into a list of DTO objects
+        return objectMapper.readValue(response.getBody().asString(), dtoType);
     }
 
 
@@ -132,4 +138,6 @@ public class SearchBreweryResponseValidator {
                 .filter(Objects::nonNull) // Ignore null field values
                 .anyMatch(value -> value.toLowerCase().contains(searchQueryParamValue));
     }
+
+
 }
