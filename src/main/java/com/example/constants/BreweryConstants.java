@@ -6,9 +6,6 @@ package com.example.constants;
  */
 
 public abstract  class BreweryConstants {
-
-    //Base URI
-    public static final String BASE_URI = "https://api.openbrewerydb.org/v1/breweries";
     //Endpoints
     public static final String SEARCH_ENDPOINT = "/search";
     public static final String AUTOCOMPLETE_ENDPOINT = "/autocomplete";
