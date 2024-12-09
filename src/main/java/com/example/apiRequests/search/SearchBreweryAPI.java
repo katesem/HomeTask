@@ -1,5 +1,6 @@
 package com.example.apiRequests.search;
 
+import com.example.config.ConfigLoader;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
@@ -8,8 +9,6 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.Map;
 
-import static com.example.constants.BreweryConstants.BASE_URI;
-
 /**
  * Class for performing requests to Search Brewery API
  */
@@ -17,7 +16,7 @@ public class SearchBreweryAPI {
 
     // Global Configuration for RestAssured Base URI
     static {
-        RestAssured.baseURI = BASE_URI;
+        RestAssured.baseURI = ConfigLoader.get("base.uri");
     }
 
     // Logger instance for logging messages
