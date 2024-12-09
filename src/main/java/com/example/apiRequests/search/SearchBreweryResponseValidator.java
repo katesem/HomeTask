@@ -138,6 +138,4 @@ public class SearchBreweryResponseValidator {
                 .filter(Objects::nonNull) // Ignore null field values
                 .anyMatch(value -> value.toLowerCase().contains(searchQueryParamValue));
     }
-
-
 }
