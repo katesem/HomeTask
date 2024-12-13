@@ -1,6 +1,7 @@
 package com.example.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Getter;
 
 /**
  * Data Transfer Object for /search endpoint JSON to simplify the deserialization process
@@ -8,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * Added @JsonProperty  annotation with field name only for fields where the JSON property name differs from the Java naming convention.
  */
 
+@Getter
 public class SearchBreweryDTO {
 
     private String id;
@@ -48,79 +50,4 @@ public class SearchBreweryDTO {
     private String state;
 
     private String street;
-
-
-    /**
-     * Getters methods for fields
-     * <p>
-     * In a real project, I would prefer to avoid writing these large amount of getters code
-     * by using the Lombok plugin and its @Getter annotation above the class name to generate getters automatically.
-     * <p>
-     * But since using Lombok plugin may require additional setup in the IDE settings, I decided not to use it
-     * for this test task to simplify the review process.
-     */
-
-    public String getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getBreweryType() {
-        return breweryType;
-    }
-
-    public String getAddress1() {
-        return address1;
-    }
-
-    public String getAddress2() {
-        return address2;
-    }
-
-    public String getAddress3() {
-        return address3;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public String getStateProvince() {
-        return stateProvince;
-    }
-
-    public String getPostalCode() {
-        return postalCode;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public String getLongitude() {
-        return longitude;
-    }
-
-    public String getLatitude() {
-        return latitude;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public String getWebsiteUrl() {
-        return websiteUrl;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public String getStreet() {
-        return street;
-    }
 }
